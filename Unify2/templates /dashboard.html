@@ -1,0 +1,8 @@
+<h1>Welcome, {{ user.username }}</h1>
+<p>Your email: {{ user.email }}</p>
+<a href="{% url 'logout' %}">Logout</a>
+{% if user.is_authenticated %}
+    <h1>Welcome, {{ user.username }}</h1>
+    <p><a href="{% url 'search_items' %}">Search Items</a></p>
+    <p><a href="{% url 'upload_item' %}">Upload an Item</a></p>
+{% endif %}

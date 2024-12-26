@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Search Items</h1>
+<form method="get" action="">
+    {{ form.as_p }}
+    <button type="submit">Search</button>
+</form>
+
+{% if results %}
+    <h2>Results:</h2>
+    <ul>
+        {% for item in results %}
+            <li>{{ item.name }} - ${{ item.price }}</li>
+        {% endfor %}
+    </ul>
+{% elif results is not None %}
+    <p>No items found.</p>
+{% endif %}
+{% endblock %}

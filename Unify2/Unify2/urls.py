@@ -1,22 +1,25 @@
-"""
-URL configuration for Unify2 project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
 from django.urls import path
+from . import views  # Import views from the current app
+
+from django.contrib import admin
+# imports django's built-in admin panel
+
+from django.conf import settings 
+# imported project settings which are used to configure things like media files.
+
+from django.urls import path, include
+# path is used to define url patterns, 
+# "include" is used to include URL configurations from other django apps.
+
+from django.conf.urls.static import static
+# used to serve the static and media files in development.
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('', views.homepage, name='homepage'),
+    # whenever i am hitting this url i am transfering control to an app urls
+    # Routes all URLs starting with http://127.0.0.1:8000/login/ to the login app.
+    # The login.urls file defines the routes for the app. 
+    path('register/', include('subapp.urls'))
+    
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
