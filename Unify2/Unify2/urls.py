@@ -20,6 +20,6 @@ urlpatterns = [
     # whenever i am hitting this url i am transfering control to an app urls
     # Routes all URLs starting with http://127.0.0.1:8000/login/ to the login app.
     # The login.urls file defines the routes for the app. 
-    path('register/', include('subapp.urls'))
+    # path('register/', include('subapp.urls'))
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
