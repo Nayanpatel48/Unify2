@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'subapp',
+    'App1',
 ]
 
 MIDDLEWARE = [
@@ -107,8 +107,9 @@ import os
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'MEDIA')
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'MEDIA')
+
 # enables file uploads in your project
 
 # Default primary key field type
