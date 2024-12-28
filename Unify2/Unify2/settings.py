@@ -25,15 +25,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'theme',
     'App1',
     'tailwind',
-    'nayan',
 ]
 
-TAILWIND_APP_NAME = 'nayan' # This is the name of the app that will be used to generate the tailwind files
-INTERNAL_IPS = ['127.0.0.1']
+AUTH_USER_MODEL = 'App1.User'  # Replace 'App1' with the actual name of your app
 
-NPM_BIN_PATH = '/snap/bin/node'
+
+TAILWIND_APP_NAME = 'theme' # This is the name of the app that will be used to generate the tailwind files
+
+INTERNAL_IPS = ['127.0.0.1']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

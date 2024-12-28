@@ -1,0 +1,28 @@
+<form method="POST">
+    {% comment %} 
+        form tag will create a from where user can enter data 
+        'POST' method is used here to send data to server securely.
+    {% endcomment %}
+
+    {% csrf_token %}
+    {% comment %} 
+        Protects your application from CSRF attacks, where an attacker tricks 
+        a user into submitting unwanted actions on your website.
+    {% endcomment %}
+
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="password" name="password" placeholder="Password" required>
+    {% comment %} 
+        input tag will create a text box where user can enter data.
+        'email' type is used here to get email input from user.
+        'password' type is used here to get password input from user.
+        'name' attribute is used to identify the input field.
+        'placeholder' attribute is used to show hint to user.
+        'required' attribute is used to make the field mandatory.
+    {% endcomment %}
+
+    <button type="submit">Login</button>
+    {% comment %} 
+        type="submit" triggers the form submission.
+    {% endcomment %}
+</form>

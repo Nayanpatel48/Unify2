@@ -1,0 +1,26 @@
+<form method="POST">
+    {% comment %} 
+        form tag will create a from where user can enter data 
+        'POST' method is used here to send data to server securely.
+    {% endcomment %}
+
+    {% csrf_token %}
+    {% comment %} 
+        Protects your application from CSRF attacks, where an attacker tricks 
+        a user into submitting unwanted actions on your website.
+    {% endcomment %}
+
+    {{ form.as_p }}
+    {% comment %} 
+        Dynamically renders all the fields in the form as <p> (paragraph) elements.
+        Instead of form.as_p, you can use:
+        form.as_table: Renders fields as rows in an HTML table.
+        form.as_ul: Renders fields as list items in an unordered list.
+        You can also manually loop through fields for finer control.
+    {% endcomment %}
+
+    <button type="submit">Register</button>
+    {% comment %} 
+        type="submit" triggers the form submission.
+    {% endcomment %}
+</form>
