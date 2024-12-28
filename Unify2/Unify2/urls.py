@@ -9,7 +9,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
+    
     # passwing transfer to APP1
     path('' , include('App1.urls')),
 ]
