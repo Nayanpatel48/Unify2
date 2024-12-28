@@ -4,13 +4,18 @@ from django.contrib import messages
 from django.contrib.auth.models import User as DjangoUser
 from django.contrib.auth.hashers import make_password
 from .forms import UserRegistrationForm
-from .models import User  # Import your custom User model
+from .models import User, UserProfile  # Import your custom User model
+from django.contrib.auth import logout
 
 def homepage(request):
-    return render(request, 'homepage.html')
+    return render(request, 'homepage.html', {'user': request.user})
 
 def layout2(request):
     return render(request, 'layout2.html')
+
+def logout_view(request):
+    logout(request)  # This will log out the user
+    return redirect('homepage')  # Redirect the user to the homepage or wherever you want
 
 # User Registration View
 def register(request):
@@ -18,7 +23,7 @@ def register(request):
     if request.method == 'POST':
     
         # Create a new form instance and populate it with the data from the request
-        form = UserRegistrationForm(request.POST)
+        form = UserRegistrationForm(request.POST, request.FILES)
 
         # Validates the form data against the rules defined in UserRegistrationForm (like
         # required fields and field types).
@@ -34,6 +39,10 @@ def register(request):
 
             # Save the user to the database with the hash password
             user.save()
+
+            profile_picture = form.cleaned_data.get('profile_picture')
+
+            user_profile = UserProfile.objects.create(user=user, profile_picture=profile_picture)
 
             messages.success(request, 'Account created successfully.')
 

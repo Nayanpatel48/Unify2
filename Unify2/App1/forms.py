@@ -1,8 +1,8 @@
 from django import forms
 # this will allow us to create custom forms
 
-from .models import User
-# imported User model from models.py to link the form with database
+from .models import User, UserProfile 
+# imported User model, UserProfile model from models.py to link the form with database
 
 # we have created a custom from named UserRegistrationForm which is 
 # inherited from forms.ModelForm
@@ -19,8 +19,11 @@ class UserRegistrationForm(forms.ModelForm):
         # linking the form with User model
         model = User
 
+        email = forms.EmailField()
+        profile_picture = forms.ImageField(required=False)  
+        
         # fields to include in the form
-        fields = ['name', 'email', 'password', 'phone', 'address', 'role']
+        fields = ['name', 'email', 'password', 'phone', 'address', 'role', 'profile_picture']
 
     # this method is used to clean the password field
     def clean_password(self):

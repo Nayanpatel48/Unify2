@@ -870,6 +870,10 @@ select {
   height: 2rem;
 }
 
+.h-12 {
+  height: 3rem;
+}
+
 .w-48 {
   width: 12rem;
 }
@@ -884,6 +888,10 @@ select {
 
 .w-full {
   width: 100%;
+}
+
+.w-12 {
+  width: 3rem;
 }
 
 .max-w-screen-xl {
@@ -1055,8 +1063,17 @@ select {
   background-color: transparent;
 }
 
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .p-4 {
   padding: 1rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
 }
 
 .px-4 {

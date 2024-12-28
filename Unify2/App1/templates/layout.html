@@ -51,7 +51,15 @@
             <div class="relative group">
                 <!-- User Profile Button -->
                 <button class="hover:text-blue-400 focus:outline-none flex items-center space-x-2">
-                  <img src="profile.jpg" alt="Profile" class="w-8 h-8 rounded-full">
+
+                {% comment %} this will show profile image of logged in user if he/she is 
+                  logged in successfully {% endcomment %}
+                  {% if user.is_authenticated %}
+                  <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="profile-image">
+                {% else %}
+                  <img src="/path/to/default-image.jpg" alt="Default Profile Picture" class="profile-image">
+                {% endif %}
+
                   <span class="hidden md:inline">User</span>
                 </button>
               
@@ -59,7 +67,19 @@
                 <div class="absolute right-0 mt-2 w-48 bg-white text-black rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-hover:block transition-opacity duration-200">
                   <a href="#" class="block px-4 py-2 hover:bg-gray-100">My Profile</a>
                   <a href="#" class="block px-4 py-2 hover:bg-gray-100">Purchase History</a>
-                  <a href="#" class="block px-4 py-2 hover:bg-gray-100">Login</a>
+                  {% block login %}
+                  {% if user.is_authenticated %}
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="bg-red-500 text-white p-2 rounded-lg">
+                            Logout
+                        </button>
+                    </form>
+                  {% else %}
+                  <!-- Optionally, show login/register links if not logged in -->
+                  <a href="{% url 'login' %}">Login</a>
+                {% endif %}
+                  {% endblock  %}
                 </div>
             </div>
         </div>
